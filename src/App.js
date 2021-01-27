@@ -1,7 +1,5 @@
+import Game from './components/Game';
 import './App.css';
-import constants from './data/constants';
-import { Button } from 'react-bootstrap'; 
-import { Maze } from './components/Maze';
 
 function startGame(){
 

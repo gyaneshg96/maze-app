@@ -11,12 +11,10 @@ export class Maze extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares : [],
-      gameInit: false,
+      gameStart: false,
+      gameEnd: false,
       locationX: 0,
       locationY: 0,
-      movesX: 0,
-      movesY: 0,
       lastMove: "",
     };
   }
@@ -24,14 +22,18 @@ export class Maze extends React.Component {
   arrowKeyPress = (event) =>{
     switch(event.keyCode){
       case leftArrow :
-        console.log("Left");
-        //movesX('+');
+        this.moveX('-');
+        break;
       case upArrow:
-        console.log("Up");
+        this.moveY('-');
+        break;
       case rightArrow:
-        console.log("Right");
+        this.moveX('+');
+        break;
       case downArrow:
-        console.log("Down");
+        this.moveY('+');
+        break;
+      default:
     }
   }
   componentDidMount() {
@@ -43,32 +45,50 @@ export class Maze extends React.Component {
   }
   
   moveX(direction) {
-    if (direction == "-") {
-    } else {
+    if (direction === "-"){
+      if (this.state.locationX > 0 ) {
+        this.setState({
+          locationX : this.state.locationX - 1
+        });
+    }  }
+    else {
+      if (this.state.locationX < this.props.width - 1) {
+        
+        this.setState({
+          locationX : this.state.locationX + 1
+        });
+      }
     }
   }
 
   moveY(direction) {
-    if (direction == "-") {
-    } else {
+        if (direction === "-"){
+      if (this.state.locationY > 0) {
+        this.setState({
+          locationY : this.state.locationY - 1
+        });
+    }  }
+    else {
+      if (this.state.locationY < this.props.height - 1) {
+        this.setState({
+          locationY : this.state.locationY + 1
+        });
+      }
     }
-  }
+  } 
 
-  handleClick(i,j) {
-    // if (i === this.state.marioLocation) this.checkForEnemies();
-    console.log(i);
-    console.log(j);
-  }
 
-  renderSquare(i,j, isPlayer, isWall) {
+  renderSquare(i,j, isWall) {
     let isStart = i === 0 && j === 0;
     let isFinish = i === this.props.height - 1 && j === this.props.width - 1;
+    let isPlayer = i === this.state.locationY && j === this.state.locationX;
+    if (isPlayer)
+    console.log(i,j);
     return <Square key={i*this.props.height + j}
       isStart = {isStart}
       isWall = {isWall}
       isPlayer = {isPlayer}  
-      isFinish = {isFinish} 
-      onClick={() => this.handleClick(i,j)}
+      isFinish = {isFinish}
     />;
   }
 
@@ -83,7 +103,7 @@ export class Maze extends React.Component {
     for (let i = 0; i < this.props.height; i++){
       let row = [];
       for (let j = 0; j < this.props.width; j++){
-        row.push(this.renderSquare(i,j,false, false));
+        row.push(this.renderSquare(i,j, false));
     }
     board.push(this.renderRow(row));
   }
@@ -97,10 +117,19 @@ export class Maze extends React.Component {
           }
       }
     }*/
+    let isFinish = this.state.locationX === this.props.width - 1 && this.state.locationY === this.props.height - 1;
     return (
       <div>
         {this.renderBoard()}
+        <div>
+        {isFinish ?
+        <p>
+          Well done !
+        </p>
+        : <div/>
+        }
+        </div>
       </div>
-    )
+    );
   }
 }
