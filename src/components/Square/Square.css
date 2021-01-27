@@ -1,0 +1,20 @@
+.square {
+  width: 25px;
+  height: 25px;
+  outline: 1px solid rgb(175, 216, 248);
+  display: inline-block;
+}
+
+.square-finish {
+  background-color: red;
+}
+
+.square-start {
+  background-color: green;
+}
+.square-wall {
+  background-color: gray;
+}
+.square-position {
+  background-color: blue;
+}
