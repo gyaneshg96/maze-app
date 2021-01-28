@@ -2,7 +2,8 @@ import React, { Component, createRef } from "react";
 import { Button } from "react-bootstrap";
 import { Maze } from "./Maze";
 import constants from "../data/constants";
-import randomizedPrim from "../helper/generateMaze";
+import randomizedPrim from "../helper/randomizedPrim";
+import simpleDFS from "../helper/simpleDFS";
 const ms = require('pretty-ms');
 
 export default class Game extends Component {
@@ -73,7 +74,8 @@ export default class Game extends Component {
   }*/
 
     initializeMatrix(){
-      this.matrix = randomizedPrim(constants.height, constants.width);
+      // this.matrix = randomizedPrim(constants.height, constants.width);
+      this.matrix = simpleDFS(constants.height, constants.width);
     }
 
   componentDidMount(){
