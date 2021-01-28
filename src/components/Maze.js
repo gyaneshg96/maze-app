@@ -10,16 +10,17 @@ const leftArrow = 37;
 export class Maze extends React.Component {
   constructor(props) {
     super(props);
+    this.matrix = [];
     this.state = {
       gameStart: false,
       gameEnd: false,
-      locationX: 0,
-      locationY: 0,
-      lastMove: "",
+      locationX: this.props.initial,
+      locationY: this.props.initial,
     };
   }
   
   arrowKeyPress = (event) =>{
+    event.preventDefault();
     switch(event.keyCode){
       case leftArrow :
         this.moveX('-');
@@ -36,24 +37,30 @@ export class Maze extends React.Component {
       default:
     }
   }
+
+ 
+
+
   componentDidMount() {
+    // this.initializeMatrix();
     document.addEventListener("keydown", this.arrowKeyPress);
   }
 
   componentWillUnmount() {
+    this.matrix = [];
     document.removeEventListener("keydown", this.arrowKeyPress);
   }
   
   moveX(direction) {
     if (direction === "-"){
-      if (this.state.locationX > 0 ) {
+      if (this.state.locationX > 0 && this.props.matrix[this.state.locationY][this.state.locationX - 1] === false) {
         this.setState({
           locationX : this.state.locationX - 1
         });
-    }  }
+    }  
+  }
     else {
-      if (this.state.locationX < this.props.width - 1) {
-        
+      if (this.state.locationX < this.props.width - 1 && this.props.matrix[this.state.locationY][this.state.locationX + 1] === false) {
         this.setState({
           locationX : this.state.locationX + 1
         });
@@ -63,13 +70,13 @@ export class Maze extends React.Component {
 
   moveY(direction) {
         if (direction === "-"){
-      if (this.state.locationY > 0) {
+      if (this.state.locationY > 0 && this.props.matrix[this.state.locationY - 1][this.state.locationX] === false) {
         this.setState({
           locationY : this.state.locationY - 1
         });
     }  }
     else {
-      if (this.state.locationY < this.props.height - 1) {
+      if (this.state.locationY < this.props.height - 1 && this.props.matrix[this.state.locationY + 1][this.state.locationX] === false) {
         this.setState({
           locationY : this.state.locationY + 1
         });
@@ -82,8 +89,6 @@ export class Maze extends React.Component {
     let isStart = i === 0 && j === 0;
     let isFinish = i === this.props.height - 1 && j === this.props.width - 1;
     let isPlayer = i === this.state.locationY && j === this.state.locationX;
-    if (isPlayer)
-    console.log(i,j);
     return <Square key={i*this.props.height + j}
       isStart = {isStart}
       isWall = {isWall}
@@ -103,21 +108,19 @@ export class Maze extends React.Component {
     for (let i = 0; i < this.props.height; i++){
       let row = [];
       for (let j = 0; j < this.props.width; j++){
-        row.push(this.renderSquare(i,j, false));
+        row.push(this.renderSquare(i,j,this.props.matrix[i][j]));
     }
     board.push(this.renderRow(row));
   }
   return board;
 }
+  sendData = (isFinish)=>{
+    this.props.parentCallback(isFinish);
+  }
   render(){
-   /* if (this.state.squares.length === 0){
-        for (let i = 0; i < this.props.height; i++){
-          for (let j = 0; j < this.props.width; j++){
-            this.state.squares.push(i*this.props.height + j);
-          }
-      }
-    }*/
+
     let isFinish = this.state.locationX === this.props.width - 1 && this.state.locationY === this.props.height - 1;
+    this.sendData(isFinish);
     return (
       <div>
         {this.renderBoard()}
