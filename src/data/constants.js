@@ -1,6 +1,6 @@
 const constants = {
-  width: 15,
-  height: 20
+  width: 10,
+  height: 12
 }
 
 export default constants;
