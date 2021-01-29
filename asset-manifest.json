@@ -1,20 +1,23 @@
 {
   "files": {
     "main.css": "/maze-app/static/css/main.ef36dc9c.chunk.css",
-    "main.js": "/maze-app/static/js/main.cda419ff.chunk.js",
-    "main.js.map": "/maze-app/static/js/main.cda419ff.chunk.js.map",
+    "main.js": "/maze-app/static/js/main.85011a0d.chunk.js",
+    "main.js.map": "/maze-app/static/js/main.85011a0d.chunk.js.map",
     "runtime-main.js": "/maze-app/static/js/runtime-main.b26b1c75.js",
     "runtime-main.js.map": "/maze-app/static/js/runtime-main.b26b1c75.js.map",
-    "static/js/2.d1d41cb4.chunk.js": "/maze-app/static/js/2.d1d41cb4.chunk.js",
-    "static/js/2.d1d41cb4.chunk.js.map": "/maze-app/static/js/2.d1d41cb4.chunk.js.map",
+    "static/css/2.31ff0196.chunk.css": "/maze-app/static/css/2.31ff0196.chunk.css",
+    "static/js/2.d8117c1d.chunk.js": "/maze-app/static/js/2.d8117c1d.chunk.js",
+    "static/js/2.d8117c1d.chunk.js.map": "/maze-app/static/js/2.d8117c1d.chunk.js.map",
     "index.html": "/maze-app/index.html",
+    "static/css/2.31ff0196.chunk.css.map": "/maze-app/static/css/2.31ff0196.chunk.css.map",
     "static/css/main.ef36dc9c.chunk.css.map": "/maze-app/static/css/main.ef36dc9c.chunk.css.map",
-    "static/js/2.d1d41cb4.chunk.js.LICENSE.txt": "/maze-app/static/js/2.d1d41cb4.chunk.js.LICENSE.txt"
+    "static/js/2.d8117c1d.chunk.js.LICENSE.txt": "/maze-app/static/js/2.d8117c1d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b26b1c75.js",
-    "static/js/2.d1d41cb4.chunk.js",
+    "static/css/2.31ff0196.chunk.css",
+    "static/js/2.d8117c1d.chunk.js",
     "static/css/main.ef36dc9c.chunk.css",
-    "static/js/main.cda419ff.chunk.js"
+    "static/js/main.85011a0d.chunk.js"
   ]
 }
