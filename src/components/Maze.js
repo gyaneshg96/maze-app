@@ -39,8 +39,6 @@ export class Maze extends React.Component {
   }
 
  
-
-
   componentDidMount() {
     // this.initializeMatrix();
     document.addEventListener("keydown", this.arrowKeyPress);

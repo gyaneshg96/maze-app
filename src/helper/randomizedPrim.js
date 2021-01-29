@@ -1,4 +1,4 @@
-import { initializeMatrix, findNeighbor } from 'common';
+import { initializeMatrix, findNeighbors } from './common';
 
 function removeElement(array, elem) {
     var index = array.indexOf(elem);
@@ -55,7 +55,7 @@ export default function randomizedPrim(height,width){
     
     // console.log(frontier_cells, randwall);
     //find random passage neighbor
-    findNeighbor(matrix, randwall[0], randwall[1])
+    findNeighbors(matrix, visited, randwall[0], randwall[1])
      
     let frontiers = findFrontier(matrix, randwall[0], randwall[1]);
 
